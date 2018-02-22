@@ -1,0 +1,20 @@
+.navbar {
+	padding-left: 0;
+}
+
+nav.navbar {
+	padding-bottom: 0;
+}
+
+nav.bg-light {
+	background-color: #fff!important;
+}
+
+a#navbarDropdown {
+	padding-left: 0;
+	margin-left: 0;
+}
+
+.logo {
+	margin-right: 0.2em;
+}

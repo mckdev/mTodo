@@ -1,0 +1,51 @@
+<div *ngIf="todo">
+  <h4 class="mb-3">/todo/{{todo.id}}</h4>
+  <div class="mat-form-container mb-3">
+    <div class="small mb-1" *ngIf="todo.completed">
+      <span class="badge-success p-1">completed</span> <button class="btn btn-sm" (click)="toggleCompleted()">resume</button>
+    </div>
+    <mat-form-field>
+      <textarea [(ngModel)]="todo.title" matInput placeholder="todo:" matTextareaAutosize matAutosizeMinRows="2" matAutosizeMaxRows="5">
+        {{ todo.title }}            
+      </textarea>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-select [(ngModel)]="todo.priority" placeholder="priority:">
+        <mat-option [value]="0">
+          low
+        </mat-option>
+        <mat-option [value]="1">
+          medium
+        </mat-option>
+        <mat-option [value]="2 ">
+          high
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-select [(ngModel)]="todo.todo_list" placeholder="list:">
+        <mat-option>--</mat-option>
+        <mat-option *ngFor="let todoList of todoLists" value="{{ todoList.url }}">
+          {{ todoList.title }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div class="btn-group list-dropdown" dropdown>
+    <button dropdownToggle type="button" class="btn btn-outline-dark btn-sm dropdown-toggle">
+      <i class="fas fa-ellipsis-v"></i>
+    </button>
+    <br>
+    <ul *dropdownMenu class="dropdown-menu" role="menu">
+        <a class="dropdown-item" (click)="toggleCompleted()">
+          <span *ngIf="!todo.completed">complete</span>
+          <span *ngIf="todo.completed">resume</span>
+        </a>
+        <a class="dropdown-item" (click)="delete(todo)">
+          delete
+        </a>
+    </ul> 
+  </div>
+  <button class="btn btn-sm btn-outline-success" (click)="save()">save</button>
+  <button class="btn btn-sm btn-outline-dark" (click)="goBack()">cancel</button>
+</div>

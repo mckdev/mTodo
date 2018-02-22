@@ -1,0 +1,23 @@
+<div class="container-fluid">
+	<nav class="navbar navbar-expand navbar-brand bg-light">
+	    <ul class="navbar-nav">
+	      <li *ngIf="isAuthenticated()" dropdown (onShown)="onShown()" class="nav-item dropdown">
+	        <a dropdownToggle class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+	          <img [src]="staticUrl() + 'logo.gif'" alt="todos" class="logo">todos<!--i class="fas fa-list"></i-->
+	        </a>
+	        <div *dropdownMenu class="dropdown-menu" aria-labelledby="navbarDropdown">
+	          <a class="dropdown-item" routerLink="/"><i class="fas fa-inbox"></i> inbox</a>
+	          <a dropdownItem class="dropdown-item" routerLink="/lists"><i class="far fa-list-alt"></i> lists</a>
+	          <span *ngFor="let todoList of todoLists">
+	            <a [ngClass]="{'d-none': todoList.completed}" class="dropdown-item" routerLink="/list/{{ todoList.id }}">{{ todoList.title}}</a>
+	  		  </span>
+	          <div class="dropdown-divider"></div>
+	          <a dropdownItem class="dropdown-item" routerLink="/search"><i class="fas fa-search"></i> search</a>
+	          <a dropdownItem class="dropdown-item" (click)="logout()"><i class="fas fa-lock"></i> logout</a>
+	        </div>
+	      </li>
+	    </ul>
+	</nav>
+	<messages></messages>
+	<router-outlet></router-outlet>
+</div>

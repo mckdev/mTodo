@@ -1,0 +1,12 @@
+h2 {
+  overflow-wrap: break-word;
+  font-size: 1em;
+}
+
+input {
+  font-size: 0.8em;	
+}
+
+.todo-textarea {
+	margin: 0.4em 0;
+}

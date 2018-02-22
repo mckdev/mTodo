@@ -1,0 +1,11 @@
+<h4>/search</h4>
+<form class="search-form">
+  <input class="form-control mr-sm-2" type="search" placeholder="search todos..." aria-label="Search" #searchBox (keyup)="search(searchBox.value)" />
+  <ul class="search-results">
+    <li *ngFor="let todo of todos$ | async">
+      <a routerLink="/todo/{{ todo.id }}">
+        {{ todo.title }}
+      </a>
+    </li>
+  </ul>
+</form>

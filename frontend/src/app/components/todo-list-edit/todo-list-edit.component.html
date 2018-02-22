@@ -1,0 +1,30 @@
+<div *ngIf="todoList">
+  <h4 class="mb-3">/lists/{{ todoList.title }}/edit</h4>
+  <div class="mat-form-container mb-3">
+    <div class="small mb-1" *ngIf="todoList.completed">
+      <span class="badge-success p-1">completed</span> <button class="btn btn-sm" (click)="toggleCompleted()">resume</button>
+    </div>
+    <mat-form-field>
+      <textarea [(ngModel)]="todoList.title" matInput placeholder="todo list:" matTextareaAutosize matAutosizeMinRows="1" matAutosizeMaxRows="5">
+        {{ todoList.title }}            
+      </textarea>
+    </mat-form-field>
+  </div>
+  <div class="btn-group list-dropdown" dropdown>
+    <button dropdownToggle type="button" class="btn btn-outline-dark btn-sm dropdown-toggle">
+      <i class="fas fa-ellipsis-v"></i>
+    </button>
+    <br>
+    <ul *dropdownMenu class="dropdown-menu" role="menu">
+        <a class="dropdown-item" (click)="toggleCompleted()">
+          <span *ngIf="!todoList.completed">complete</span>
+          <span *ngIf="todoList.completed">resume</span>
+        </a>
+        <a class="dropdown-item" (click)="delete(todoList)">
+          delete
+        </a>
+    </ul> 
+  </div>
+  <button class="btn btn-sm btn-outline-success" (click)="save()">save</button>
+  <button class="btn btn-sm btn-outline-dark" (click)="goBack()">cancel</button>
+</div>
